@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>html 标准化</title>
+    <link rel="stylesheet" type="text/css" href="css/base.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+</head>
+
+<body>
+    <div class="main-wrap">
+        <div class="item">
+            <p class="des">构建更好的样式：</p>
+        </div>
+        <div class="item">
+            <p class="des">1.流程图(1)：</p>
+            <ul class="stepWrap clearfix">
+                <li class="steps active">
+                    <div class="stepContent">
+                        <p class="stepTitle">确认信息</p>
+                        <p class="stepNum">1</p>
+                    </div>
+                    <p class="progressLine">&nbsp;</p>
+                </li>
+                <li class="steps">
+                    <div class="stepContent">
+                        <p class="stepTitle"> 确认合同</p>
+                        <p class="stepNum">2</p>
+                    </div>
+                    <p class="progressLine">&nbsp;</p>
+                </li>
+                <li class="steps">
+                    <div class="stepContent">
+                        <p class="stepTitle">支付确认</p>
+                        <p class="stepNum">3</p>
+                    </div>
+                    <p class="progressLine">&nbsp;</p>
+                </li>
+                <li class="steps lastChild">
+                    <div class="stepContent">
+                        <p class="stepTitle">完成</p>
+                        <p class="stepNum">4</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="item">
+            <p class="des">1.流程图(2)：</p>
+            <ul class="stepWrap clearfix">
+                <li class="steps finish">
+                    <div class="stepContent">
+                        <p class="stepTitle">确认信息</p>
+                        <p class="stepNum">1</p>
+                    </div>
+                    <p class="progressLine">&nbsp;</p>
+                </li>
+                <li class="steps active">
+                    <div class="stepContent">
+                        <p class="stepTitle"> 确认合同</p>
+                        <p class="stepNum">2</p>
+                    </div>
+                    <p class="progressLine">&nbsp;</p>
+                </li>
+                <li class="steps">
+                    <div class="stepContent">
+                        <p class="stepTitle">支付确认</p>
+                        <p class="stepNum">3</p>
+                    </div>
+                    <p class="progressLine">&nbsp;</p>
+                </li>
+                <li class="steps lastChild">
+                    <div class="stepContent">
+                        <p class="stepTitle">完成</p>
+                        <p class="stepNum">4</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="item">
+            <p class="des">2.表单类(请填写以下信息验证身份)：</p>
+            <div class="form-horizontal" style="padding-bottom: 25px;">
+                <div class="control-group">
+                    <label class="control-label">姓名：</label>
+                    <div class="controls">
+                        <span class="input-filled">黄利鹏&nbsp;</span>
+                        <i class="hidden correct-icon">
+                        <span class="icon correctCircleIcon"></span>
+                    </i>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="bankNo">借记卡号：</label>
+                        <div class="controls">
+                            <span class="input-wrap">
+                        <input id="bankNo" type="text" tabindex="1" class="inputs input-medium" data-validate-order="empty,bankNo" data-label="借记卡号">
+                    </span>
+                            <p class="valid-info hidden"><span class="valid-text"></span><span class="icon correctCircleIcon"></span></p>
+                            <span class="errorPanel">
+                        <b class="arrow left"> </b>
+                        <span class="errorContent">请填写借记卡号</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="mobileNo">手机号码：</label>
+                        <div class="controls">
+                            <span class="input-wrap">
+                        <input id="mobileNo" type="text" tabindex="2" class="inputs input-medium" data-validate-order="empty,mobileNo" data-label="手机号码">
+                    </span>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label"></label>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="otpNo">手机动态码：</label>
+                            <div class="controls">
+                                <span class="input-wrap">
+                        <input type="text" id="otpNo" tabindex="3" class="inputs input-medium" data-validate-order="empty,otpNo" data-label="验证码">
+                    </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="item">
+            <p class="mv15">3.普通按钮1</p>
+            <a class="btn btn-default" href="javascript:void(0);">立即登录</a>
+            <p class="mv15">普通按钮2</p>
+            <a class="btn" href="javascript:void(0);">登&emsp;录</a>
+            <p class="mv15">加大按钮</p>
+            <a class="btn btn-xlarge" href="javascript:void(0);">登&emsp;录</a>
+
+            <a class="btn btn-xlarge loginSubmit" href="javascript:void(0);">登&emsp;录</a>
+
+        </div>
+    </div>
+    <script src="js/jquery-1.9.1.min.js"></script>
+    <script src="js/index.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,463 @@
+.item{
+    width: 680px;
+    margin: 0 auto 20px;
+}
+.item p.des{
+    margin-bottom: 20px;
+}
+
+
+
+.main-wrap {
+    min-height: 420px;
+    margin: 20px auto 40px;
+}
+.stepWrap {
+    width: 680px;
+    margin: 0 auto 20px
+}
+
+.stepWrap.is-3step {
+    width: 480px
+}
+
+.stepWrap .steps {
+    float: left;
+    width: 206px;
+    position: relative;
+    z-index: 0;
+    font-size: 14px;
+    padding-bottom: 0
+}
+
+.stepWrap .steps.lastChild {
+    width: 60px
+}
+
+.stepWrap .stepContent {
+    width: 90px;
+    text-align: center
+}
+
+.stepWrap .steps .stepTitle {
+    color: #999;
+    padding-bottom: 5px
+}
+
+.stepWrap .steps.active .stepTitle {
+    color: #e6551d
+}
+
+.stepWrap .steps.finish .stepTitle {
+    color: #333
+}
+
+.stepWrap .steps .stepNum {
+    color: #5d5d5d;
+    font-weight: 700;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    background: url("../image/icon_recharge_withdrawal.8120ff13.png") -206px -78px no-repeat;
+    margin-left: 30px;
+    *margin-left: 0
+}
+
+.stepWrap .steps.active .stepNum {
+    color: #fff;
+    background-position: -270px 1px
+}
+
+.stepWrap .steps.finish .stepNum {
+    background-position: -139px -149px;
+    font-size: 0
+}
+
+.stepWrap .progressLine {
+    position: absolute;
+    top: 32px;
+    left: 62px;
+    z-index: 1;
+    height: 1px;
+    width: 171px;
+    border-bottom: 1px dashed #c8c8c8
+}
+
+.stepWrap .steps.active .progressLine,.stepWrap .steps.finish .progressLine {
+    top: 32px;
+    height: 7px;
+    width: 175px;
+    border: none;
+    background: url("../image/icon_recharge_withdrawal.8120ff13.png") -5px -230px no-repeat
+}
+
+
+.form-horizontal .control-group {
+    clear: both;
+    margin: 10px 0 12px
+}
+.form-horizontal .control-group-large .control-label {
+    font-size: 16px;
+    padding-top: 12px;
+    color: #999;
+    color: #333;
+    font-weight: 700;
+
+}
+
+.control-group-large .form_select.ullh div a,.form-horizontal .control-group-large .input-wrap .inputs {
+    height: 36px;
+    line-height: 36px;
+    font-size: 18px
+}
+
+.form-horizontal .control-group-large .input-wrap .input-icon {
+    top: 3px
+}
+
+.control-group-large .form_select.ullh div a {
+    background-position: 195px -83px
+}
+
+.form-horizontal .radio-group.control-group-large .control-label {
+    padding-top: 0
+}
+
+.form-horizontal .control-group-large .validIcon {
+    bottom: 12px
+}
+
+.form-horizontal .control-group {
+    margin: 0 0 12px;
+    *margin: 0 0 14px;
+    clear: both
+}
+
+.form-horizontal .control-label {
+    float: left;
+    width: 110px;
+    color: #333;
+    font-weight: 700;
+    font-size: 12px;
+    padding-top: 10px;
+    text-align: right;
+    text-shadow: 0 0 1px #e5e5e5
+}
+.input-filled {
+    margin: 0 10px 0 0;
+    line-height: 33px;
+}
+.input-filled, .quickpay-form .control-label, .quickpay-form-tip {
+    color: #333;
+    font-weight: 700;
+}
+
+.form-horizontal .controls {
+    position: relative;
+    margin-left: 121px;
+    *display: inline-block;
+    *margin-left: 0;
+    *padding-left: 10px
+}
+
+inpu .form-horizontal .input-wrap {
+    position: relative;
+    *display: inline
+}
+
+.form-horizontal .input-wrap .inputs {
+    border: 1px solid #999;
+    height: 28px;
+    border-radius: 2px;
+    line-height: 28px;
+    outline: 0;
+    font-size: 12px;
+    padding: 0 5px;
+    width: 208px;
+    vertical-align: middle
+}
+
+.form-horizontal .input-wrap.icon-wrap .inputs {
+    padding: 0 0 0 30px;
+    width: 188px
+}
+
+.form-horizontal .input-wrap .inputs.input-small {
+    width: 98px
+}
+
+.form-horizontal .input-wrap.icon-wrap .inputs.input-small {
+    width: 78px
+}
+
+.form-horizontal .input-wrap .inputs.input-medium {
+    width: 158px
+}
+
+.form-horizontal .input-wrap.icon-wrap .inputs.input-medium {
+    width: 138px
+}
+
+.form-horizontal .input-wrap .textareas {
+    border: 1px solid #999;
+    border-radius: 2px;
+    height: 100px;
+    outline: 0;
+    font-size: 14px;
+    padding: 5px;
+    width: 182px;
+    vertical-align: middle
+}
+
+.form-horizontal .input-wrap.focus-form .inputs,.form-horizontal .input-wrap.focus-form .textareas,.form_select.ullh.focus-form div a {
+    border: 1px solid #8B99F7
+}
+
+.form-horizontal .form-error .input-wrap.focus-form {
+    border-color: #d9c4f6
+}
+
+.form-horizontal .form-error .inputs,.form-horizontal .form-error .textareas,.form-horizontal .input-wrap.error .inputs,.form-horizontal .input-wrap.error .textareas {
+    border: 1px solid red
+}
+
+.form-horizontal .input-wrap .input-icon {
+    display: block;
+    background: url(img/input_icon.7c6af78d.png) no-repeat;
+    width: 27px;
+    height: 34px;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 1px;
+    font-size: 0
+}
+
+.form-horizontal .input-icon.user {
+    background-position: -46px 9px
+}
+
+.form-horizontal .input-icon.password {
+    background-position: -16px -23px
+}
+
+.form-horizontal .input-icon.validate {
+    background-position: 9px -57px
+}
+
+.form-horizontal .input-icon.mail {
+    background-position: -46px -92px
+}
+
+.form-horizontal .input-icon.mobile {
+    background-position: -20px -131px
+}
+
+.form-horizontal .input-icon.search {
+    background-position: 5px -171px
+}
+
+.form-horizontal .input-icon.invite {
+    background-position: -46px -202px
+}
+
+.form-horizontal .input-icon.company {
+    background-position: -22px -234px
+}
+
+.form-horizontal .input-icon.tel {
+    background-position: 5px -266px
+}
+
+.form-horizontal .validateImg {
+    display: inline-block;
+    margin-left: 3px;
+    vertical-align: middle
+}
+
+.form-horizontal .validate-input {
+    position: relative
+}
+
+.form-horizontal .validIcon {
+    bottom: 8px;
+    position: absolute;
+    right: 5px
+}
+
+.form-horizontal .replenish-hor {
+    margin-left: 5px;
+    color: #666;
+    font-size: 14px;
+    vertical-align: middle
+}
+
+.form-horizontal .replenish-ver {
+    padding-top: 5px;
+    color: #999;
+    font-size: 12px;
+    font-weight: 400
+}
+
+.form-horizontal .replenish-hor.multipleLine,.form-horizontal .replenish-ver.multipleLine {
+    padding-top: 0;
+    margin-left: 5px;
+    position: absolute
+}
+
+.form-horizontal .help-line {
+    display: inline-block;
+    margin-left: 10px;
+    width: 340px;
+    line-height: 20px;
+    color: #666;
+    vertical-align: middle
+}
+
+.form-horizontal .error .help-line {
+    display: inline-block;
+    width: 320px;
+    line-height: 14px;
+    background-color: #fbeee8;
+    color: #333;
+    padding: 7px 11px;
+    margin-left: 10px;
+    vertical-align: middle
+}
+
+.form-horizontal .error .help-line .content {
+    width: 300px;
+    display: inline-block;
+    margin-left: 5px;
+    vertical-align: top
+}
+
+.form-horizontal .btn_xlarge {
+    font-size: 18px;
+    width: 140px
+}
+
+.form-horizontal .input-wrap .inputs.phoneValideNum {
+    width: 98px
+}
+
+.form-horizontal .btn_valid {
+    margin-left: 5px
+}
+
+.form-horizontal .errorPanel {
+    display: none;
+    position: relative;
+    z-index: 1;
+    margin-left: 10px;
+    vertical-align: middle;
+    max-width: 240px;
+    padding: 7px;
+    border: 1px solid #fab418;
+    border-radius: 5px;
+    background-color: #fef3cd;
+    font-size: 12px;
+    color: red;
+    box-shadow: 1px 1px 2px #ccc;
+    line-height: normal
+}
+
+.form-horizontal .errorPanel.multipleLine {
+    position: absolute
+}
+
+.form-horizontal .errorPanel .arrow {
+    display: block;
+    position: absolute;
+    background: url(img/form_icon_ullh.44b07c4d.png) 100px 100px no-repeat
+}
+
+.iconForm,.input-wrap {
+    display: inline-block;
+    vertical-align: middle
+}
+
+.form-horizontal .errorPanel .arrow.left {
+    background-position: -72px -133px;
+    left: -6px;
+    top: 8px;
+    width: 7px;
+    height: 12px;
+    z-index: 2
+}
+
+.iconForm {
+    background: url("img/form_icon_ullh.44b07c4d.png") 100px 100px no-repeat
+}
+
+.cationRedIcon {
+    background-position: -63px -99px;
+    width: 15px;
+    height: 15px
+}
+
+.input-wrap .input,.input-wrap .textarea {
+    outline: 0;
+    padding: 0 5px;
+    background: #fff;
+    color: #333;
+    position: relative
+}
+
+.input-wrap {
+    line-height: normal;
+    position: relative
+}
+
+.input-wrap .input {
+    height: 31px;
+    line-height: 31px;
+    font-size: 12px;
+    width: 208px;
+    -webkit-transition: none;
+    transition: none;
+    vertical-align: middle
+}
+
+.input-wrap .textarea {
+    border-width: 1px;
+    border-style: solid;
+    border-color: #9f9f9f #c5c5c5 #c5c5c5;
+    box-shadow: inset 1px 1px 2px #e2e2e2;
+    border-radius: 0;
+    line-height: 150%;
+    font-size: 14px;
+    -webkit-transition: none;
+    transition: none;
+    resize: none;
+    overflow: hidden
+}
+
+.form_select.ullh.focus-form div,.input-wrap.focus-form {
+    border-color: #8B99F7
+}
+
+.input-wrap.focus-form .input,.input-wrap.focus-form .textarea {
+    border: 1px solid #8B99F7
+}
+
+.input-wrap.error .input,.input-wrap.error .textarea {
+    border: 1px solid red
+}
+
+.input-wrap.disabled input,.input-wrap.disabled textarea {
+    background-color: #F3F3F3
+}
+
+.input-wrap .input-small {
+    width: 98px
+}
+
+.form-horizontal .input-wrap.input-small {
+    width: 110px
+}
+
+.form-horizontal .input-wrap.input-small .inputs {
+    width: 78px
+}
