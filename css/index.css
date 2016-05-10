@@ -461,3 +461,110 @@ inpu .form-horizontal .input-wrap {
 .form-horizontal .input-wrap.input-small .inputs {
     width: 78px
 }
+
+/*progressbar start*/
+
+.progressbar {
+    width: 800px;
+  padding: 10px;
+  border: 1px solid #00008B;
+  height: 150px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.progressbar li {
+    width: 150px;
+    float: left;
+    height: 1px;
+    box-sizing: border-box;
+    position: relative;
+    text-align: left;
+}
+.progressbar .icon{
+    font-size: 36px;
+    color: #FF5F2A;
+}
+.progressbar .yinhangzhuanzhuang i{
+    /*color: #d7d6db;*/
+}
+.progressbar li:last-child{
+    text-align: right;
+    width:180px;
+}
+
+.progressbar i{
+    display: inline-block;
+}
+.progressbar li div{
+  margin-top: 22px;
+  width: 150px;
+  text-align: left;
+}
+.progressbar li.step-up div {
+    /*margin-top: -45px!important;*/
+}
+.progressbar li h3{
+    color: #1D1D26;
+    font-size: 16px;
+    font-weight: 400;
+    font-size: 13px;
+    width: 100px;
+    text-align: center;
+    padding: 9px 0px;
+    border: 1px solid #CCC;
+    box-sizing: border-box;
+    background-color: #EFEFEF;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.progressbar li p{
+    color: #999;
+    font-size: 12px;
+}
+
+.progressbar .progressLine{
+    position: absolute;
+    top: 37px;
+    left: 100px;
+    z-index: 1;
+    height: 1px;
+    width: 50px;
+    border-bottom: 2px solid #efefef;
+}
+.progressbar .check-btn{
+    width: 100px;
+    font-weight: 400;
+    font-size: 13px;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 5px 20px;
+    margin-bottom: 10px;
+}
+.progressbar .check-data{
+    display: block;
+    padding: 3px 20px;
+    width: 100px;
+    box-sizing: border-box;
+    text-align: center;
+}
+.progressbar .progress-info{
+  width: 100px;
+  box-sizing: border-box;
+  padding: 5px 20px;
+  text-align: center;
+  background-color: #FFF!important;
+  color: #999;
+  font-size: 12px;
+  border-width: 0 1px 1px;
+  border-color: #E6E6E6 #E6E6E6 #BFBFBF;
+  border-style: solid;
+  line-height: 20px;
+  display: block;
+
+  margin-bottom: 10px;
+}
+
+/*progressbar end*/

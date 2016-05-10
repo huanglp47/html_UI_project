@@ -6,6 +6,7 @@
     <title>html 标准化</title>
     <link rel="stylesheet" type="text/css" href="css/base.css">
     <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/pop.css">
 </head>
 
 <body>
@@ -123,7 +124,6 @@
                 </div>
             </div>
         </div>
-
         <div class="item">
             <p class="mv15">3.普通按钮1</p>
             <a class="btn btn-default" href="javascript:void(0);">立即登录</a>
@@ -131,13 +131,76 @@
             <a class="btn" href="javascript:void(0);">登&emsp;录</a>
             <p class="mv15">加大按钮</p>
             <a class="btn btn-xlarge" href="javascript:void(0);">登&emsp;录</a>
-
             <a class="btn btn-xlarge loginSubmit" href="javascript:void(0);">登&emsp;录</a>
-
+        </div>
+        <div class="item" style="margin-bottom: 50px;">
+            <ul class="progressbar">
+                <li class="yunyinshenhe">
+                    <div>
+                        <h3>资料审核</h3>
+                        <span class="stepContent">
+                            <a href="javascript:;" class="btn check-btn">检查资料</a>
+                            <a href="javascript:;" class="check-data">查看资料</a>
+                        </span>
+                    </div>
+                    <p class="progressLine"></p>
+                </li>
+                <li class="duizhangdan step-up">
+                    <div>
+                        <h3>费用审核</h3>
+                        <span class="stepContent">
+                            <p class="progress-info">等待</p>
+                        </span>
+                    </div>
+                    <p class="progressLine"></p>
+                </li>
+                <li class="caiwushenhe">
+                    <div>
+                        <h3>财务审核</h3>
+                        <span class="stepContent">
+                            <p class="progress-info">等待</p>
+                        </span>
+                    </div>
+                    <p class="progressLine"></p>
+                </li>
+                <li class="yinhangzhuanzhuang step-up">
+                    <div>
+                        <h3>银行转账</h3>
+                        <span class="stepContent">
+                            <p class="progress-info">等待</p>
+                        </span>
+                    </div>
+                    <p class="progressLine"></p>
+                </li>
+                <li class="shangchuanshuidan step-up">
+                    <div>
+                        <h3>上传水单</h3>
+                        <span class="stepContent">
+                            <p class="progress-info">等待</p>
+                        </span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="item" style="margin-bottom: 100px;">
+            <p><a href="javascript:;" class="btn createBarBtn" style="margin: 10px 0">点击使用js生成流程图</a></p>
+            <ul class="progressbar J_progressbar" style="padding: 10px;border: 1px solid #00008B;min-height: 150px;"></ul>
+        </div>
+        <div class="item" style="margin-bottom: 100px;">
+            <p class="mv15">js动态生成年月</p>
+            <span>
+                年份
+                <select id="year" name="year">
+                </select>
+                <select id="month" name="month">
+                </select>
+            </span>
         </div>
     </div>
     <script src="js/jquery-1.9.1.min.js"></script>
+    <script src="js/pop.js"></script>
     <script src="js/index.js"></script>
+    <script src="js/init.js"></script>
 </body>
 
 </html>
