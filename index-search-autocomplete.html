@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>html autocomplete</title>
+    <link href="http://tassets.lrts.me/plugins/css/base.css" rel="stylesheet">
+    <style type="text/css">
+    .search-autocomplete-pulldown {
+        background: #fdfdfd;
+        border: 1px solid #b4b4b4;
+        /* -moz-border-radius: 3px;
+            -webkit-border-radius: 3px;
+            border-radius: 3px;*/
+        text-align: left;
+        z-index: 9999;
+        width: 100%;
+        max-height: 200px;
+        overflow: auto;
+    }
+    
+    .search-autocomplete-pulldown li {
+        cursor: pointer;
+        height: 30px;
+        line-height: 30px;
+        list-style: none;
+    }
+    
+    .search-autocomplete-pulldown li.active, .search-autocomplete-pulldown li:hover {
+        background-color: #e8e8e8;
+    }
+    
+    .marginlr10 {
+        margin: 0 10px;
+    }
+    
+    .search-autocomplete-pulldown li label {
+        display: inline-block;
+    }
+    </style>
+</head>
+
+<body>
+    <div>
+        <input type="text" name="keyWord" class="autocomplete" placeholder="请输入查询条件" data-autocomplete="aa/sss.action">
+    </div>
+    <div class="btn"><a class="btn">选择的项:<span class="search-user-id"></span></a></div>
+    <script src="js/jquery-1.9.1.min.js"></script>
+    <script>
+    var data = [{
+        'userId': 111,
+        'userName': '耳根1',
+        'userType': '白金',
+        'copyRight': '潇湘书院'
+    }, {
+        'userId': 222,
+        'userName': '耳根2',
+        'userType': '皇冠',
+        'copyRight': '红袖添香'
+    }, {
+        'userId': 333,
+        'userName': '耳根3',
+        'userType': '白金',
+        'copyRight': '潇湘书院'
+    }, {
+        'userId': 444,
+        'userName': '耳根4',
+        'userType': '皇冠',
+        'copyRight': '红袖添香'
+    }];
+    // var data = [];
+
+    var autocomplete_li = '<li class="pulldown-li">' +
+        '<label><input type="checkbox" name="autocomplete-author" data-user-id="{{userId}}">' +
+        '<span>{{userName}}</span>' +
+        '<span class="marginlr10">{{userType}}</span>' +
+        '<span>{{copyRight}}</span>' +
+        '</label></li>';
+    var no_suggestion_li = '<li class="pulldown-li">无数据！</li>';
+
+    function Autocomplete(opt) {
+        this.el = opt.el;
+        this.cb = opt.cb || function() {};
+        this.intervalTime = opt.intervalTime;
+
+        this.pulldownDivClass = '.search-autocomplete-pulldown';
+        this.prevTime = 0; //时间戳
+        this.oldValue = ''; // 搜索旧值
+        this.visible = false; // 下拉框不可见
+
+        this.init();
+    }
+    Autocomplete.prototype = {
+        init: function() {
+            this.initInput();
+            this.bindEvent();
+        },
+        initInput: function() {
+            this.el.attr('autocomplete', 'off');
+        },
+
+        bindEvent: function() {
+            var me = this,
+                timer = "";
+            this.el.on('keyup click', function(e) {
+                var newValue = me.getTextValue();
+                if ($.trim(newValue)=="") {
+                    me.visible && me.removePullDownPanel();
+                    return
+                }
+                if(me.visible&& $.trim(newValue)==$.trim(me.oldValue)){
+                    return
+                }
+                me.oldValue = newValue;
+
+                var nowTime = +new Date();
+                if (nowTime - me.prevTime < me.intervalTime) {
+                    timer && clearTimeout(timer);
+                }
+                me.prevTime = nowTime;
+
+                timer = setTimeout(function() {
+                    me.fetchData();
+                }, me.intervalTime)
+            });
+
+            $(document).on('click', function(e) {
+                var $target = $(e.target);
+                if ($target.parents(me.pulldownDivClass).length || $target.hasClass('autocomplete')) {
+                    return
+                }
+                me.removePullDownPanel();
+            }).on('click', '.pulldown-li', function() {
+                var userId = me.autocompleteGetSelect();
+                $('.search-user-id').html(userId.join(','));
+            });
+        },
+        
+        getTextValue: function() {
+            return this.el.val();
+        },
+
+        fetchData: function() {
+            var keyWord = $.trim(this.getTextValue());
+            var url = this.el.attr('data-autocomplete');
+            // utils.ajax({
+            //     url: url,
+            //     data: {
+            //         'keyWord': keyWord
+            //     }
+            //     type: 'POST',
+            //     success: function(data) {
+            //         this.renderPullDown(data);
+            //     }
+            // });
+
+            this.renderPullDown(data, keyWord);
+        },
+
+        autocompleteGetSelect: function() {
+            var userId = [];
+            $(this.pulldownDivClass).find('input[name="autocomplete-author"]').each(function() {
+                var $this = $(this);
+                if ($this.is(':checked')) {
+                    userId.push($this.attr('data-user-id'));
+                }
+            })
+            return userId
+        },
+
+        renderPullDown: function(data, keyWord) {
+
+            // test only
+            data = data.slice(0, Math.ceil(Math.random() * 4));
+
+            this.removePullDownPanel();
+
+            var ul_html = this.returnRenderHtml(data, keyWord);
+
+            this.el.parent()
+                .append('<div class="search-autocomplete-pulldown">' + ul_html + '</div>')
+                .css({
+                    'position': 'relative',
+                    'display': 'inline-block'
+                });
+            $(this.pulldownDivClass).css({
+                'width': this.el.css('width'),
+                'right': '0px'
+            });
+
+            this.visible = true; //下拉框可见
+        },
+
+        returnRenderHtml: function(data, keyWord) {
+            var li_html = '',
+                ul_html = "";
+            if ($.trim(keyWord) == "" || data.length == 0) {
+                li_html = no_suggestion_li;
+            } else {
+                for (var i = 0, len = data.length; i < len; i++) {
+                    li_html += autocomplete_li.replace(/{{userId}}/ig, data[i].userId)
+                        .replace(/{{userName}}/ig, data[i].userName)
+                        .replace(/{{userType}}/ig, data[i].userType)
+                        .replace(/{{copyRight}}/ig, data[i].copyRight);
+                }
+            }
+            ul_html += '<ul>' + li_html + '</ul>';
+
+            return ul_html
+        },
+
+        removePullDownPanel: function() {
+            $(this.pulldownDivClass).remove();
+            this.visible = false;
+        },
+
+        showPullDownPanel: function() {
+            $(this.pulldownDivClass).show();
+            this.visible = true;
+        }
+    };
+
+    (function() {
+        $('input[data-autocomplete]').each(function() {
+            new Autocomplete({
+                el: $(this),
+                intervalTime: 300
+            });
+        });
+    })();
+    </script>
+</body>
+
+</html>
