@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>admin上传组件</title>
+    <link href="http://tassets.lrts.me/plugins/css/base.css" rel="stylesheet">
+    <style type="text/css">
+    .cover-list li {
+        display: inline-block;
+        margin-right: 10px;
+    }
+    
+    .cover-list {
+        margin: 10px 0px;
+    }
+    
+    .cover-list-btn {
+        position: relative;
+        text-align: center;
+    }
+    
+    .cover-list-btn>div {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        opacity: 0;
+    }
+    
+    .cover-list li img {
+        width: 120px;
+        height: 180px;
+    }
+    
+    .horizontal-pic {
+        width: 180px;
+        height: 120px;
+    }
+    
+    .cover-list li .qq-upload-list {
+        display: none;
+    }
+    
+    .btn,
+    .btn-primary,
+    .qq-upload-button {
+        font-family: Microsoft YaHei, Simsum, serif;
+        -moz-border-bottom-colors: none;
+        -moz-border-left-colors: none;
+        -moz-border-right-colors: none;
+        -moz-border-top-colors: none;
+        background-color: #F5F5F5;
+        background-image: linear-gradient(to bottom, #FFFFFF, #E6E6E6);
+        background-repeat: repeat-x;
+        border-color: #ccc;
+        border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) #B3B3B3;
+        border-image: none;
+        border-radius: 4px;
+        border-style: solid;
+        border-width: 1px;
+        box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
+        color: #333333;
+        display: inline-block;
+        line-height: 20px;
+        margin-bottom: 0;
+        padding: 4px 12px;
+        text-align: center;
+        text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+        vertical-align: middle;
+    }
+    </style>
+</head>
+
+<body>
+    <ul class="cover-list" data-cover='http://lrtstest.qiniudn.com/7da7b451d3d049bead26eacc50a18c451123.png' data-upload-url="/yytingadmin/fileupload/BookFileUpload.servlet" data-size-url='/yytingadmin/commonRes/coverFormatList.action?type=book_cover'></ul>
+
+    <script type="text/javascript" src="http://tassets.lrts.me/plugins/jquery/jquery.min.js"></script>
+    <script src="http://tassets.lrts.me/admin/js/fileuploader.js"></script>
+    <script>
+    (function() {
+        var li_html = '<li>' +
+            '<img id="iconImg{{name_s}}{{width}}" src=""/>' +
+            '<div class="cover-list-btn" name="上传{{name_s}}{{width}}x{{height}}">' +
+            '<span class="btn">{{title}}</span>' +
+            '<div id="file-uploader{{name_s}}{{width}}"></div>' +
+            '</div>' +
+            '<input id="{{name}}{{width}}" value="{{name_s}}{{width}}x{{height}}" type="hidden">' +
+            '</li>';
+
+        function UploadController(opt) {
+            this.container = '.cover-list';
+            this.opt = opt || [];
+            this.init();
+        }
+        $.extend(UploadController.prototype, {
+            init: function() {
+                this.renderUploadComponent()
+                this.repaintUpload();
+                this.createUploader();
+            },
+            renderUploadComponent: function() {
+                var _html = '',
+                    _name = '',
+                    btn_title = '',
+                    title = '',
+                    name = '';
+                for (var i = 0, len = this.opt.length; i < len; i++) {
+                    if (this.opt[i].width) {
+                        _name = this.opt[i].size_name ? this.getNameBite(this.opt[i].size_name) : '';
+                        btn_title = '上传' + _name + this.opt[i].width + 'x' + this.opt[i].height;
+                        title = this.opt[i].btn_title || btn_title;
+                        name = this.opt[i].size_name || 'picSize';
+                        _html += li_html.replace(/{{width}}/ig, this.opt[i].width)
+                            .replace(/{{title}}/ig, title)
+                            .replace(/{{name_s}}/ig, _name)
+                            .replace(/{{name}}/ig, name)
+                            .replace(/{{height}}/ig, this.opt[i].height);
+                    }
+                }
+                $(this.container).html(_html);
+            },
+
+            getNameBite: function(name) {
+                return name ? name.substring(7) : '';
+            },
+
+            repaintUpload: function() {
+                var me = this,
+                    k = -1,
+                    index = null,
+                    _html = '',
+                    type = "",
+                    _cover = null;
+                var cover = this.getCover();
+                if (cover) {
+                    k = cover.lastIndexOf(".");
+                    index = cover.lastIndexOf("/");
+                    if (index >= 0) {
+                        _cover = cover.substring(index + 1);
+                    } else {
+                        _cover = cover;
+                    }
+                } else {
+                    _cover = '';
+                }
+                _html = '<input id="cover" name="cover" value="' + _cover + '" type="text" />';
+                $(_html).insertBefore(this.container);
+                if (k >= 0) {
+                    type = cover.substring(k);
+                    cover = cover.substring(0, k);
+                    var t = parseInt(Math.random() * 10000 + 10000),
+                        src = '',
+                        _spe = '';
+                    this.opt.forEach(function(obj) {
+                        _spe = obj.size_name ? me.getNameBite(obj.size_name) : ''; //pageSizeAdt取Adt
+                        src = cover + '_' + _spe + obj.width + 'x' + obj.height + type + '?' + t;
+                        $('#iconImg' + _spe + obj.width).attr('src', src);
+                    })
+                } else {
+                    $('img[id^=iconImg]').attr('src', '');
+                }
+            },
+            createUploader: function() {
+                var me = this;
+                this.opt.forEach(function(obj) {
+                    me.createSingleUploader(obj);
+                })
+            },
+            getCover: function() {
+                return $(this.container).attr('data-cover');
+            },
+            getUrl: function(obj) {
+                var _url = $(this.container).attr('data-upload-url'),
+                    picSize = document.getElementById('picSize' + this.getNameBite(obj.size_name) + obj.width).value,
+                    uploadTag = obj.uploadOpt ? obj.uploadOpt.uploadTag : 'cover',
+                    isDefault = obj.uploadOpt ? obj.uploadOpt.isDefault : 'false',
+                    cover = document.getElementById('cover').value;
+                var url = _url + '?picSize=' + picSize + '&uploadTag=' + uploadTag + '&isDefault=' + isDefault + '&cover=' + cover;
+                return url;
+            },
+            createSingleUploader: function(obj) {
+                var me = this,
+                    url = this.getUrl(obj),
+                    ele = 'file-uploader' + me.getNameBite(obj.size_name) + obj.width;
+                var UploaderOpt = {
+                    element: document.getElementById(ele),
+                    sizeLimit: 102400,
+                    action: url,
+                    debug: true,
+                    messages: {
+                        sizeError: "{file} 图片大小不能超过 25kb"
+                    },
+                    onComplete: function(id, fileName, responseJSON) {
+                        if (!responseJSON.success) {
+                            alert(responseJSON.msgContent);
+                            return;
+                        }
+                        $("#cover")[0].value = responseJSON.cover;
+                        $("#iconImg" + me.getNameBite(obj.size_name) + obj.width)[0].src = responseJSON.path;
+                    }
+                };
+                new qq.FileUploader(UploaderOpt);
+            }
+        });
+
+        // usage: {opt} Array 
+        var opt = [{
+            width: 60,
+            height: 60,
+            uploadOpt: {
+                uploadTag: 111,
+                isDefault: true
+            }
+        }, {
+            width: 40,
+            height: 40
+        }, {
+            width: 40,
+            height: 40,
+            size_name: 'picSizeAdt'
+        }, {
+            width: 68,
+            height: 68
+        }, {
+            width: 74,
+            height: 74
+        }, {
+            width: 100,
+            height: 100
+        }, {
+            width: 112,
+            height: 112
+        }, {
+            width: 102,
+            height: 102,
+            btn_title: '102x102(Android大屏)'
+        }, {
+            width: 90,
+            height: 90,
+            btn_title: 'ios6p使用'
+        }, {
+            width: 108,
+            height: 108,
+            btn_title: '108x108(Android大屏)'
+        }, {
+            width: 72,
+            height: 72,
+            btn_title: '72x72(ios使用)'
+        }];
+         new UploadController(opt);
+
+        // var size_url = $('.cover-list').attr('data-size-url');
+        // utils.ajax({
+        //     url: size_url,
+        //     success: function(data) {
+        //         var opt = data.opt||[];
+        //         new UploadController(opt);
+        //     },
+        //     error: function(data) {
+        //         self.error(data);
+        //     }
+        // });
+    })();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <script src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.4/??flexible_css.js,flexible.js"></script>
+    <link rel="apple-touch-icon" href="favicon.png">
+    <link rel="Shortcut Icon" href="favicon.png" type="image/x-icon">
+    <title>再来一波</title>
+    <!-- <link rel="stylesheet" type="text/css" href="css/flexible_demo.css"> -->
+</head>
+
+<body>
+    <p>页面结构写在这里</p>
+    <div id="mySelect">
+    </div>
+</body>
+<script>
+(function() {
+    function randomColor() {
+        var arr = ["0", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d"],
+            strHex = "#";
+        for (var i = 0; i < 6; i++) {
+            strHex += arr[Math.round(Math.random() * 15)];
+        };
+        return strHex
+    }
+    var aa = randomColor();
+    console.log(aa);
+}());
+</script>
+
+</html>

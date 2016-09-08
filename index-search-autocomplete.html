@@ -9,31 +9,24 @@
     .search-autocomplete-pulldown {
         background: #fdfdfd;
         border: 1px solid #b4b4b4;
-        /* -moz-border-radius: 3px;
-            -webkit-border-radius: 3px;
-            border-radius: 3px;*/
         text-align: left;
         z-index: 9999;
         width: 100%;
         max-height: 200px;
         overflow: auto;
     }
-    
     .search-autocomplete-pulldown li {
         cursor: pointer;
         height: 30px;
         line-height: 30px;
         list-style: none;
     }
-    
     .search-autocomplete-pulldown li.active, .search-autocomplete-pulldown li:hover {
         background-color: #e8e8e8;
     }
-    
     .marginlr10 {
         margin: 0 10px;
     }
-    
     .search-autocomplete-pulldown li label {
         display: inline-block;
     }
@@ -45,7 +38,7 @@
         <input type="text" name="keyWord" class="autocomplete" placeholder="请输入查询条件" data-autocomplete="aa/sss.action">
     </div>
     <div class="btn"><a class="btn">选择的项:<span class="search-user-id"></span></a></div>
-    <script src="js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="http://assets.lrts.me/plugins/jquery/jquery.min.js"></script>
     <script>
     var data = [{
         'userId': 111,
@@ -91,10 +84,12 @@
         this.init();
     }
     Autocomplete.prototype = {
+
         init: function() {
             this.initInput();
             this.bindEvent();
         },
+
         initInput: function() {
             this.el.attr('autocomplete', 'off');
         },

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <link rel="Shortcut Icon" href="favicon.png" type="image/x-icon">
+    <title></title>
+</head>
+
+<body>
+    <p></p>
+    <div id="mySelect">
+    </div>
+</body>
+<script>
+(function() {
+    // 创建一个拥有指定原型和若干个指定属性的对象。MDN
+    // https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/create#Classical_inheritance_with_Object.create
+    if (typeof Object.create != 'function') {
+        Object.create = (function() {
+            var Temp = function() {};
+            var hssOwn = Object.prototype.hasOwnProperty;
+            return function(O) {
+                if (typeof O != "object") {
+                    throw TypeError('Object prototype may only be an Object or null');
+                }
+                Temp.prototype = O;
+                var obj = new Temp();
+                Temp.prototype = null;
+                if (arguments.length > 1) {
+                    var Properties = Object(arguments[1]);
+                    for (var prop in Properties) {
+                        if (hssOwn.call(Properties, prop)) {
+                            obj[prop] = Properties[prop];
+                        }
+                    }
+                }
+                return obj
+            }
+        })()
+    }
+    var o = Object.create(Object.prototype, {
+            // foo会成为所创建对象的数据属性
+            foo: {
+                writable: true,
+                configurable: true,
+                value: "hello"
+            },
+            // bar会成为所创建对象的访问器属性
+            bar: {
+                configurable: false,
+                get: function() {
+                    return 10
+                },
+                set: function(value) {
+                    console.log("Setting `o.bar` to", value)
+                }
+            }
+        })
+        // console.log(o);
+        ////////////////////////////////
+    if (!Object.keys) {
+        Object.keys = (function() {
+            var hasOwnProperty = Object.prototype.hasOwnProperty,
+                hasDontEnumBug = !({
+                    toString: null
+                }).propertyIsEnumerable('toString'),
+                dontEnums = [
+                    'toString',
+                    'toLocaleString',
+                    'valueOf',
+                    'hasOwnProperty',
+                    'isPrototypeOf',
+                    'propertyIsEnumerable',
+                    'constructor'
+                ],
+                dontEnumsLength = dontEnums.length;
+
+            return function(obj) {
+                if (typeof obj !== 'object' && typeof obj !== 'function' || obj === null) {
+                    throw new TypeError('Object.keys called on non-object');
+                }
+                var result = [];
+                for (var prop in obj) {
+                    if (hasOwnProperty.call(obj, prop)) result.push(prop);
+                }
+                if (hasDontEnumBug) {
+                    for (var i = 0; i < dontEnumsLength; i++) {
+                        if (hasOwnProperty.call(obj, dontEnums[i])) result.push(dontEnums[i]);
+                    }
+                }
+                return result;
+            }
+        })()
+    };
+    var my_obj = Object.create({}, {
+        getFoo: {
+            value: function() {
+                return this.foo
+            }
+        }
+    });
+    my_obj.foo = 1;
+    console.log(Object.keys(my_obj)); // ["foo"]
+
+    //////////////////////////////
+}());
+
+//////////
+(function() {
+
+    // function aa(x){
+    //     var arg = [].slice.apply(arguments);
+    //     return function(y){
+    //         var args = arg.concat([].slice.apply(arguments))
+    //         return eval(args.join("+"));
+    //     }
+    // }
+    // // var a = aa(2)(3)(4)(5)(6)(7);
+    // var a = aa(2,3,4,5,6)(7);
+    // console.log(a);
+
+    var smallKenan = function(action) {
+        var bigKenan = function(doing) {
+            var result = "";
+            if (action === "take drugs") {
+                if (doing === "bathWithGirlFriend") {
+                    result = "尖叫，新一，你这个色狼，然后一巴掌，脸煮熟了~";
+                } else if (doing === "pointOutKiller") {
+                    result = "新一，这个案子就交给你的，快点找出谁是凶手吧~";
+                }
+            } else {
+                if (doing === "bathWithGirlFriend") {
+                    result = "来吧，柯南，一起洗澡吧~";
+                } else if (doing === "pointOutKiller") {
+                    result = "小孩子家，滚一边去！";
+                }
+            }
+            console.log(result);
+            return arguments.callee; // 等同于return bigKenan
+        };
+        return bigKenan;
+    };
+
+    // 小柯南吃药了，然后和毛利兰洗澡，凶案现场指证犯人；结果是……
+    smallKenan("take drugs")("bathWithGirlFriend")("pointOutKiller");
+
+
+    function aa(elem) {
+        this.elements = [2,4,1]
+        var start = 0,
+            end = this.elements.length,
+            sectionLength = end - start,
+            pivot = start + Math.floor(sectionLength / 2),
+            pivotElem = this.elements[pivot]
+
+        while (sectionLength > 1) {
+            if (pivotElem < elem) start = pivot
+            if (pivotElem > elem) end = pivot
+
+            sectionLength = end - start
+            pivot = start + Math.floor(sectionLength / 2)
+            pivotElem = this.elements[pivot]
+        }
+
+        if (pivotElem > elem) return pivot
+        if (pivotElem < elem) return pivot + 1
+    }
+    aa([{
+        'aa': '123'
+    }])
+
+}());
+</script>
+
+</html>
